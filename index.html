@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Ujian Kamu di Sini!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* ... (CSS Anda tetap sama, sudah bagus) ... */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        
+        .primary-bg {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
+        
+        .secondary-bg {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        
+        .link-button {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-left: 4px solid transparent;
+        }
+        
+        .link-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.15);
+            border-left-color: #4f46e5;
+            background-color: white;
+        }
+        
+        .profile-img {
+            box-shadow: 0 10px 40px rgba(79, 70, 229, 0.15);
+            border: 3px solid white;
+        }
+        
+        .wave {
+            animation: wave 3s ease-in-out infinite;
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .logo-container {
+            width: 112px;
+            height: 112px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* CSS TAMBAHAN UNTUK JUDUL YANG BISA DI-KLIK */
+        h1 {
+            cursor: pointer; /* Memberi tahu pengguna bahwa ini bisa diklik */
+        }
+    </style>
+</head>
+<body class="min-h-screen py-12 px-4">
+    <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-10 fade-in">
+            <div class="mb-6 wave">
+                <div class="logo-container mx-auto primary-bg profile-img">
+                    <img src="logo.png" alt="Logo Portal Ujian" class="logo-img">
+                </div>
+            </div>
+            <h1 id="judul" class="text-3xl font-bold text-gray-800 mb-2" title="Klik aku untuk kejutan!">Halo, Pejuang Ujian! 🚀</h1>
+            <p class="text-gray-600">Semua link penting untuk ujianmu ada di sini. Tinggal klik, ya!</p>
+        </div>
+
+        <div id="linksContainer" class="space-y-4 mb-8">
+            <a href="https://example.com/jadwal" target="_blank" class="block w-full bg-white text-gray-800 font-medium py-4 px-6 rounded-lg link-button flex items-center justify-between shadow-sm border border-gray-100 fade-in">
+                <span>📅 Jadwal Ujian Semester</span>
+                <i class="fas fa-external-link-alt text-gray-400 text-sm"></i>
+            </a>
+            <a href="https://example.com/kisi-kisi" target="_blank" class="block w-full bg-white text-gray-800 font-medium py-4 px-6 rounded-lg link-button flex items-center justify-between shadow-sm border border-gray-100 fade-in" style="animation-delay: 0.1s">
+                <span>📝 Kisi-Kisi Ujian</span>
+                <i class="fas fa-external-link-alt text-gray-400 text-sm"></i>
+            </a>
+            <a href="https://example.com/materi" target="_blank" class="block w-full bg-white text-gray-800 font-medium py-4 px-6 rounded-lg link-button flex items-center justify-between shadow-sm border border-gray-100 fade-in" style="animation-delay: 0.2s">
+                <span>📚 Materi Pembelajaran</span>
+                <i class="fas fa-external-link-alt text-gray-400 text-sm"></i>
+            </a>
+            <a href="https://example.com/tips" target="_blank" class="block w-full bg-white text-gray-800 font-medium py-4 px-6 rounded-lg link-button flex items-center justify-between shadow-sm border border-gray-100 fade-in" style="animation-delay: 0.3s">
+                <span>💡 Tips & Trik Ujian</span>
+                <i class="fas fa-external-link-alt text-gray-400 text-sm"></i>
+            </a>
+            <a href="https://example.com/kontak" target="_blank" class="block w-full bg-white text-gray-800 font-medium py-4 px-6 rounded-lg link-button flex items-center justify-between shadow-sm border border-gray-100 fade-in" style="animation-delay: 0.4s">
+                <span>📞 Kontak Pengawas</span>
+                <i class="fas fa-external-link-alt text-gray-400 text-sm"></i>
+            </a>
+        </div>
+
+        <div class="text-center text-gray-500 text-sm pt-6 border-t border-gray-200">
+            <p>Semangat Belajar! | © 2025 Panitia Ujian</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inisialisasi confetti
+            const jsConfetti = new JSConfetti();
+
+            // --- Efek 1: Selamat Datang ---
+            // Diberi sedikit delay (500ms) agar tidak terlalu kaget
+            setTimeout(() => {
+                jsConfetti.addConfetti({
+                    emojis: ['📚', '✨', '🎉', '🚀'],
+                    confettiNumber: 70, // Jumlah confetti
+                    emojiSize: 70      // Ukuran emoji
+                });
+            }, 500);
+
+            // --- Efek 2: Easter Egg saat Judul di-klik ---
+            const judul = document.getElementById('judul');
+            
+            if (judul) {
+                judul.addEventListener('click', () => {
+                    jsConfetti.addConfetti({
+                        emojis: ['💡', '✔️', '💯', '🥳'],
+                        confettiNumber: 100,
+                        emojiSize: 80
+                    });
+                });
+            }
+        });
+    </script>
+    
+    </body>
+</html>
