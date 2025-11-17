@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
-        /* ... (CSS Anda tetap sama, sudah bagus) ... */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
         body {
@@ -18,10 +17,6 @@
         
         .primary-bg {
             background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-        }
-        
-        .secondary-bg {
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
         }
         
         .link-button {
@@ -52,6 +47,7 @@
         
         .fade-in {
             animation: fadeIn 0.6s ease-in;
+            animation-fill-mode: backwards; /* Agar tidak 'flash' */
         }
         
         @keyframes fadeIn {
@@ -75,9 +71,8 @@
             object-fit: cover;
         }
         
-        /* CSS TAMBAHAN UNTUK JUDUL YANG BISA DI-KLIK */
         h1 {
-            cursor: pointer; /* Memberi tahu pengguna bahwa ini bisa diklik */
+            cursor: pointer;
         }
     </style>
 </head>
@@ -94,27 +89,11 @@
         </div>
 
         <div id="linksContainer" class="space-y-4 mb-8">
-            <a href="https://example.com/jadwal" target="_blank" class="block w-full bg-white text-gray-800 font-medium py-4 px-6 rounded-lg link-button flex items-center justify-between shadow-sm border border-gray-100 fade-in">
-                <span>📅 Jadwal Ujian Semester</span>
-                <i class="fas fa-external-link-alt text-gray-400 text-sm"></i>
-            </a>
-            <a href="https://example.com/kisi-kisi" target="_blank" class="block w-full bg-white text-gray-800 font-medium py-4 px-6 rounded-lg link-button flex items-center justify-between shadow-sm border border-gray-100 fade-in" style="animation-delay: 0.1s">
-                <span>📝 Kisi-Kisi Ujian</span>
-                <i class="fas fa-external-link-alt text-gray-400 text-sm"></i>
-            </a>
-            <a href="https://example.com/materi" target="_blank" class="block w-full bg-white text-gray-800 font-medium py-4 px-6 rounded-lg link-button flex items-center justify-between shadow-sm border border-gray-100 fade-in" style="animation-delay: 0.2s">
-                <span>📚 Materi Pembelajaran</span>
-                <i class="fas fa-external-link-alt text-gray-400 text-sm"></i>
-            </a>
-            <a href="https://example.com/tips" target="_blank" class="block w-full bg-white text-gray-800 font-medium py-4 px-6 rounded-lg link-button flex items-center justify-between shadow-sm border border-gray-100 fade-in" style="animation-delay: 0.3s">
-                <span>💡 Tips & Trik Ujian</span>
-                <i class="fas fa-external-link-alt text-gray-400 text-sm"></i>
-            </a>
-            <a href="https://example.com/kontak" target="_blank" class="block w-full bg-white text-gray-800 font-medium py-4 px-6 rounded-lg link-button flex items-center justify-between shadow-sm border border-gray-100 fade-in" style="animation-delay: 0.4s">
-                <span>📞 Kontak Pengawas</span>
-                <i class="fas fa-external-link-alt text-gray-400 text-sm"></i>
-            </a>
-        </div>
+            <div id="loading-links" class="text-center p-4 text-gray-500">
+                <i class="fas fa-spinner fa-spin mr-2"></i> Memuat daftar link...
+            </div>
+            
+            </div>
 
         <div class="text-center text-gray-500 text-sm pt-6 border-t border-gray-200">
             <p>Semangat Belajar! | © 2025 Panitia Ujian</p>
@@ -124,23 +103,22 @@
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Inisialisasi confetti
+        document.addEventListener('DOMContentLoaded', async () => {
             const jsConfetti = new JSConfetti();
+            const judul = document.getElementById('judul');
+            const linksContainer = document.getElementById('linksContainer');
+            const loadingLinksEl = document.getElementById('loading-links');
 
             // --- Efek 1: Selamat Datang ---
-            // Diberi sedikit delay (500ms) agar tidak terlalu kaget
             setTimeout(() => {
                 jsConfetti.addConfetti({
                     emojis: ['📚', '✨', '🎉', '🚀'],
-                    confettiNumber: 70, // Jumlah confetti
-                    emojiSize: 70      // Ukuran emoji
+                    confettiNumber: 70,
+                    emojiSize: 70
                 });
             }, 500);
 
             // --- Efek 2: Easter Egg saat Judul di-klik ---
-            const judul = document.getElementById('judul');
-            
             if (judul) {
                 judul.addEventListener('click', () => {
                     jsConfetti.addConfetti({
@@ -149,6 +127,40 @@
                         emojiSize: 80
                     });
                 });
+            }
+
+            // --- Efek 3: Mengambil Data Dinamis ---
+            try {
+                // Panggil API publik yang sudah kita buat
+                const response = await fetch('/api/get-siswa-links');
+                if (!response.ok) {
+                    throw new Error('Gagal memuat data dari server.');
+                }
+                
+                const links = await response.json();
+                
+                // 1. Sembunyikan Loading
+                loadingLinksEl.style.display = 'none';
+                
+                // 2. Render Links
+                if (links && links.length > 0) {
+                    links.forEach((link, index) => {
+                        const linkHTML = `
+                            <a href="${link.url}" target="_blank" class="block w-full bg-white text-gray-800 font-medium py-4 px-6 rounded-lg link-button flex items-center justify-between shadow-sm border border-gray-100 fade-in" style="animation-delay: ${index * 0.1}s">
+                                <span>${link.text}</span>
+                                <i class="fas fa-external-link-alt text-gray-400 text-sm"></i>
+                            </a>
+                        `;
+                        linksContainer.innerHTML += linkHTML;
+                    });
+                } else {
+                    linksContainer.innerHTML = '<p class="text-center text-gray-500 fade-in">Belum ada link yang ditambahkan oleh Admin.</p>';
+                }
+
+            } catch (err) {
+                console.error(err);
+                loadingLinksEl.textContent = 'Gagal memuat daftar link.';
+                loadingLinksEl.classList.add('text-red-600');
             }
         });
     </script>
