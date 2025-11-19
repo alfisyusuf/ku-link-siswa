@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ceklist Aktivitas Fisika - Kelas 11</title>
+    <style>
+        :root { --primary: #2563eb; --bg: #f8fafc; --card: #ffffff; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: #333; line-height: 1.6; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        
+        /* Kartu Identitas */
+        .identity-card { background: var(--card); padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); margin-bottom: 20px; border-left: 5px solid var(--primary); }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="text"], select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+
+        /* Section Materi */
+        .section-title { background: #1e293b; color: white; padding: 10px 15px; border-radius: 8px 8px 0 0; margin-top: 30px; font-size: 1.1em; }
+        .checklist-box { background: var(--card); padding: 20px; border-radius: 0 0 8px 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        
+        /* Styling Checkbox */
+        .check-item { display: flex; align-items: flex-start; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #eee; }
+        .check-item:last-child { border-bottom: none; }
+        .check-item input { margin-top: 5px; margin-right: 10px; transform: scale(1.2); cursor: pointer; }
+        .check-item span { cursor: pointer; }
+        .sub-header { font-weight: bold; color: var(--primary); margin: 15px 0 10px 0; text-transform: uppercase; font-size: 0.9em; letter-spacing: 1px; }
+
+        /* Tombol */
+        .btn-submit { background: var(--primary); color: white; border: none; padding: 15px 30px; font-size: 16px; border-radius: 50px; cursor: pointer; width: 100%; margin-top: 20px; transition: background 0.3s; font-weight: bold; box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3); }
+        .btn-submit:hover { background: #1d4ed8; }
+        .btn-submit:disabled { background: #94a3b8; cursor: not-allowed; }
+
+        /* Notifikasi */
+        #statusMessage { margin-top: 15px; text-align: center; font-weight: bold; display: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 style="text-align:center;">Ceklist Aktivitas Belajar Fisika</h2>
+    <p style="text-align:center; color:#666;">Centang aktivitas yang sudah kamu selesaikan, lalu klik Update.</p>
+
+    <form id="trackerForm">
+        <div class="identity-card">
+            <div class="form-group">
+                <label>Nama Lengkap</label>
+                <input type="text" id="nama" required placeholder="Contoh: Budi Santoso">
+            </div>
+            <div class="form-group">
+                <label>Kelas</label>
+                <select id="kelas" required>
+                    <option value="">-- Pilih Kelas --</option>
+                    <option value="XI MIPA 1">XI MIPA 1</option>
+                    <option value="XI MIPA 2">XI MIPA 2</option>
+                    <option value="XI MIPA 3">XI MIPA 3</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="section-title">Unit 3: Electric Circuits (Link 1)</div>
+        <div class="checklist-box">
+            <div class="sub-header">Current, resistivity, and Ohm's law</div>
+            <label class="check-item"><input type="checkbox" name="Ohm's Law (video)"><span>Ohm's Law (video)</span></label>
+            <label class="check-item"><input type="checkbox" name="Resistivity and conductivity (video)"><span>Resistivity and conductivity (video)</span></label>
+            <label class="check-item"><input type="checkbox" name="Kirchhoff's current law (video)"><span>Kirchhoff's current law (video)</span></label>
+            <label class="check-item"><input type="checkbox" name="Kirchhoff's laws (review)"><span>Kirchhoff's laws (review)</span></label>
+            <label class="check-item"><input type="checkbox" name="Electric power (video)"><span>Electric power (video)</span></label>
+
+            <div class="sub-header">Practice</div>
+            <label class="check-item"><input type="checkbox" name="Practice: Calculating resistance using Ohm's law"><span>Calculating resistance, voltage, and current using Ohm's law</span></label>
+            <label class="check-item"><input type="checkbox" name="Practice: Ohm's law calculations"><span>Ohm's law calculations</span></label>
+
+            <div class="sub-header">Compound circuits</div>
+            <label class="check-item"><input type="checkbox" name="Series resistors (video)"><span>Series resistors (video)</span></label>
+            <label class="check-item"><input type="checkbox" name="Parallel resistors (video)"><span>Parallel resistors (video)</span></label>
+            <label class="check-item"><input type="checkbox" name="Simplifying resistor networks (video)"><span>Simplifying resistor networks (video)</span></label>
+            <label class="check-item"><input type="checkbox" name="Simplifying resistor networks (review)"><span>Simplifying resistor networks (review)</span></label>
+            <label class="check-item"><input type="checkbox" name="Solved example: Finding current/voltage"><span>Solved example: Finding current and voltage in a circuit (video)</span></label>
+            <label class="check-item"><input type="checkbox" name="Voltmeters and ammeters (video)"><span>Voltmeters and ammeters (video)</span></label>
+            <label class="check-item"><input type="checkbox" name="Review of electric charge and circuits"><span>Review of electric charge and circuits (video)</span></label>
+
+            <div class="sub-header">Practice (Compound)</div>
+            <label class="check-item"><input type="checkbox" name="Practice: Finding equivalent resistance"><span>Finding equivalent resistance</span></label>
+            <label class="check-item"><input type="checkbox" name="Practice: Simplifying resistor networks"><span>Simplifying resistor networks</span></label>
+            <label class="check-item"><input type="checkbox" name="Practice: Finding currents and voltages"><span>Finding currents and voltages (pure circuits)</span></label>
+        </div>
+
+        <div class="section-title">Advanced Circuits (Link 2)</div>
+        <div class="checklist-box">
+            <label class="check-item"><input type="checkbox" name="Kirchhoff's loop rule"><span>Kirchhoff's loop rule</span></label>
+            <label class="check-item"><input type="checkbox" name="Kirchhoff's law app: 2-loop"><span>Kirchhoff's law application: 2-loop circuit solving</span></label>
+            <label class="check-item"><input type="checkbox" name="Kirchhoff's voltage law (conceptual)"><span>Kirchhoff's voltage law (conceptual)</span></label>
+            <label class="check-item"><input type="checkbox" name="Kirchhoff's laws"><span>Kirchhoff's laws</span></label>
+            <label class="check-item"><input type="checkbox" name="Kirchhoff's loop rule review"><span>Kirchhoff's loop rule review</span></label>
+
+            <div class="sub-header">Practice</div>
+            <label class="check-item"><input type="checkbox" name="Practice: Kirchhoff's loop rule Symbolic"><span>Kirchhoff's loop rule: Symbolic problems</span></label>
+            <label class="check-item"><input type="checkbox" name="Proficient: Kirchhoff's loop rule calcs"><span>Proficient: Kirchhoff's loop rule calculations</span></label>
+            <label class="check-item"><input type="checkbox" name="Proficient: Kirchhoff's rules 2 loops"><span>Proficient: Kirchhoff's rules: circuits with two loops</span></label>
+        </div>
+
+        <div class="section-title">Electric Power (Link 3)</div>
+        <div class="checklist-box">
+            <div class="sub-header">Practice</div>
+            <label class="check-item"><input type="checkbox" name="Practice: Electric Power"><span>Electric Power</span></label>
+        </div>
+
+        <button type="submit" class="btn-submit" id="submitBtn">UPDATE AKTIVITAS SAYA</button>
+        <div id="statusMessage"></div>
+    </form>
+</div>
+
+<script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxAnHllIB3RVoppr2Bo_pSLIBk_n-LUFg33DCJuNO2hW-K2B188PNuqSNQ5_nEUCUx4/exec';
+
+    document.getElementById('trackerForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const btn = document.getElementById('submitBtn');
+        const statusDiv = document.getElementById('statusMessage');
+        const nama = document.getElementById('nama').value.trim();
+        const kelas = document.getElementById('kelas').value;
+
+        if(!nama || !kelas) {
+            alert("Mohon isi Nama dan Kelas");
+            return;
+        }
+
+        btn.disabled = true;
+        btn.innerText = "Sedang Menyimpan...";
+        statusDiv.style.display = "none";
+
+        // Mengumpulkan data checkbox
+        let checklistData = {};
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        
+        checkboxes.forEach((box) => {
+            // Kita kirim nama item dan status (true/false)
+            checklistData[box.name] = box.checked;
+        });
+
+        const payload = {
+            nama: nama,
+            kelas: kelas,
+            checklist: checklistData
+        };
+
+        // Kirim ke Google Sheets
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors', // Penting untuk Apps Script
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload)
+        })
+        .then(response => {
+            // Karena mode no-cors, kita tidak bisa baca response JSON secara langsung
+            // Kita asumsikan sukses jika tidak ada network error
+            statusDiv.innerText = "✅ Data berhasil disimpan! Terima kasih.";
+            statusDiv.style.color = "green";
+            statusDiv.style.display = "block";
+            btn.innerText = "UPDATE AKTIVITAS SAYA";
+            btn.disabled = false;
+            
+            // Reset form (opsional, kalau mau siswa input lagi bisa dihapus baris ini)
+            // document.getElementById('trackerForm').reset();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            statusDiv.innerText = "❌ Gagal menyimpan. Coba lagi.";
+            statusDiv.style.color = "red";
+            statusDiv.style.display = "block";
+            btn.disabled = false;
+        });
+    });
+</script>
+
+</body>
+</html>
