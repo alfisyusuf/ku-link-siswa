@@ -16,6 +16,13 @@
             z-index: 10; border-radius: 1rem; backdrop-filter: blur(2px);
         }
         .hidden { display: none !important; }
+        /* Custom checkbox style */
+        .checkbox-wrap input:checked + span {
+            color: #4f46e5;
+            font-weight: 600;
+            text-decoration: line-through;
+            text-decoration-color: #cbd5e1;
+        }
     </style>
 </head>
 <body class="bg-slate-100 text-slate-800 min-h-screen py-10 px-4">
@@ -24,7 +31,7 @@
         
         <div class="text-center mb-10">
             <h1 class="text-3xl md:text-4xl font-bold text-indigo-600 mb-2">Ceklist Aktivitas Fisika</h1>
-            <p class="text-slate-500">Cukup masukkan nama untuk melihat progressmu.</p>
+            <p class="text-slate-500">Unit 3: Electric Circuits & Kirchhoff's Rules</p>
         </div>
 
         <form id="trackerForm" class="space-y-6 relative">
@@ -40,77 +47,195 @@
 
                 <div class="w-full">
                     <label class="block text-lg font-bold text-slate-700 mb-2 text-center">Nama Lengkap</label>
-                    
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                            </svg>
+                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" /></svg>
                         </div>
                         <input type="text" id="nama" list="daftarNamaSiswa" onchange="checkUserData()" 
                             placeholder="Ketik namamu di sini..." 
                             class="w-full pl-10 pr-4 py-4 rounded-xl border-2 border-slate-200 bg-slate-50 text-lg focus:border-indigo-500 focus:ring-indigo-500 transition-all text-center">
                     </div>
-
                     <datalist id="daftarNamaSiswa"></datalist>
-                    <p class="text-center text-sm text-slate-400 mt-2" id="nameStatus">Pilih nama dari saran yang muncul agar tidak salah ketik</p>
+                    <p class="text-center text-sm text-slate-400 mt-2" id="nameStatus">Masukkan nama untuk membuka ceklist</p>
                 </div>
             </div>
 
             <div id="materiContainer" class="space-y-6 relative transition-opacity duration-500 opacity-50 pointer-events-none">
+
                 <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-                    <div class="bg-slate-800 px-6 py-4"><h2 class="text-white font-semibold">Unit 3: Electric Circuits</h2></div>
-                    <div class="p-6 space-y-6">
+                    <div class="bg-slate-800 px-6 py-4 flex justify-between items-center">
+                        <h2 class="text-white font-semibold">Link 1 (Unit 3: Electric circuits)</h2>
+                    </div>
+                    <div class="p-6 space-y-8">
+                        
                         <div>
-                            <h4 class="text-sm font-bold text-indigo-600 uppercase mb-3 border-b pb-1">Material Videos</h4>
+                            <h4 class="text-sm font-bold text-indigo-600 uppercase mb-3 border-b pb-1 tracking-wide">Current, resistivity, and Ohm's law</h4>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <label class="checkbox-wrap flex items-center space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
-                                    <input type="checkbox" name="Ohm's Law (video)" class="h-5 w-5 text-indigo-600 rounded">
-                                    <span>Ohm's Law (video)</span>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" name="Ohm's Law (video)" class="h-5 w-5 text-indigo-600 rounded mt-0.5">
+                                    <span class="text-sm">Ohm's Law (video)</span>
                                 </label>
-                                <label class="checkbox-wrap flex items-center space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
-                                    <input type="checkbox" name="Resistivity and conductivity (video)" class="h-5 w-5 text-indigo-600 rounded">
-                                    <span>Resistivity & conductivity</span>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" name="Resistivity and conductivity (video)" class="h-5 w-5 text-indigo-600 rounded mt-0.5">
+                                    <span class="text-sm">Resistivity and conductivity (video)</span>
                                 </label>
-                                <label class="checkbox-wrap flex items-center space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
-                                    <input type="checkbox" name="Kirchhoff's current law (video)" class="h-5 w-5 text-indigo-600 rounded">
-                                    <span>Kirchhoff's current law</span>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" name="Kirchhoff's current law (video)" class="h-5 w-5 text-indigo-600 rounded mt-0.5">
+                                    <span class="text-sm">Kirchhoff's current law (video)</span>
                                 </label>
-                                <label class="checkbox-wrap flex items-center space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
-                                    <input type="checkbox" name="Electric power (video)" class="h-5 w-5 text-indigo-600 rounded">
-                                    <span>Electric power</span>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" name="Kirchhoff's laws (review)" class="h-5 w-5 text-indigo-600 rounded mt-0.5">
+                                    <span class="text-sm">Kirchhoff's laws (review)</span>
+                                </label>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" name="Electric power (video)" class="h-5 w-5 text-indigo-600 rounded mt-0.5">
+                                    <span class="text-sm">Electric power (video)</span>
                                 </label>
                             </div>
                         </div>
-                         <div>
-                            <h4 class="text-sm font-bold text-indigo-600 uppercase mb-3 border-b pb-1">Practice</h4>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                                <label class="checkbox-wrap flex items-center space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
-                                    <input type="checkbox" name="Prac: Ohm's law calculations" class="h-5 w-5 text-indigo-600 rounded">
-                                    <span>Ohm's law calculations</span>
+
+                        <div>
+                            <h4 class="text-sm font-bold text-teal-600 uppercase mb-3 border-b pb-1 tracking-wide">Practice</h4>
+                            <div class="grid grid-cols-1 gap-3">
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border border-teal-100 bg-teal-50/30 rounded-lg hover:bg-teal-50 cursor-pointer">
+                                    <input type="checkbox" name="Calculating resistance, voltage, and current using Ohm's law" class="h-5 w-5 text-teal-600 rounded mt-0.5">
+                                    <span class="text-sm">Calculating resistance, voltage, and current using Ohm's law</span>
+                                </label>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border border-teal-100 bg-teal-50/30 rounded-lg hover:bg-teal-50 cursor-pointer">
+                                    <input type="checkbox" name="Ohm's law calculations" class="h-5 w-5 text-teal-600 rounded mt-0.5">
+                                    <span class="text-sm">Ohm's law calculations</span>
                                 </label>
                             </div>
                         </div>
+
+                        <div>
+                            <h4 class="text-sm font-bold text-indigo-600 uppercase mb-3 border-b pb-1 tracking-wide">Compound circuits</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" name="Series resistors (video)" class="h-5 w-5 text-indigo-600 rounded mt-0.5">
+                                    <span class="text-sm">Series resistors (video)</span>
+                                </label>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" name="Parallel resistors (video)" class="h-5 w-5 text-indigo-600 rounded mt-0.5">
+                                    <span class="text-sm">Parallel resistors (video)</span>
+                                </label>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" name="Simplifying resistor networks (video)" class="h-5 w-5 text-indigo-600 rounded mt-0.5">
+                                    <span class="text-sm">Simplifying resistor networks (video)</span>
+                                </label>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" name="Simplifying resistor networks (review)" class="h-5 w-5 text-indigo-600 rounded mt-0.5">
+                                    <span class="text-sm">Simplifying resistor networks (review)</span>
+                                </label>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" name="Solved example: Finding current and voltage in a circuit (video)" class="h-5 w-5 text-indigo-600 rounded mt-0.5">
+                                    <span class="text-sm">Solved example: Finding current and voltage in a circuit (video)</span>
+                                </label>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" name="Voltmeters and ammeters (video)" class="h-5 w-5 text-indigo-600 rounded mt-0.5">
+                                    <span class="text-sm">Voltmeters and ammeters (video)</span>
+                                </label>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" name="Review of electric charge and circuits (video)" class="h-5 w-5 text-indigo-600 rounded mt-0.5">
+                                    <span class="text-sm">Review of electric charge and circuits (video)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-sm font-bold text-teal-600 uppercase mb-3 border-b pb-1 tracking-wide">Practice</h4>
+                            <div class="grid grid-cols-1 gap-3">
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border border-teal-100 bg-teal-50/30 rounded-lg hover:bg-teal-50 cursor-pointer">
+                                    <input type="checkbox" name="Finding equivalent resistance" class="h-5 w-5 text-teal-600 rounded mt-0.5">
+                                    <span class="text-sm">Finding equivalent resistance</span>
+                                </label>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border border-teal-100 bg-teal-50/30 rounded-lg hover:bg-teal-50 cursor-pointer">
+                                    <input type="checkbox" name="Simplifying resistor networks" class="h-5 w-5 text-teal-600 rounded mt-0.5">
+                                    <span class="text-sm">Simplifying resistor networks</span>
+                                </label>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border border-teal-100 bg-teal-50/30 rounded-lg hover:bg-teal-50 cursor-pointer">
+                                    <input type="checkbox" name="Finding currents and voltages (pure circuits)" class="h-5 w-5 text-teal-600 rounded mt-0.5">
+                                    <span class="text-sm">Finding currents and voltages (pure circuits)</span>
+                                </label>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
                 <div class="bg-white rounded-2xl shadow-md overflow-hidden">
-                    <div class="bg-slate-800 px-6 py-4"><h2 class="text-white font-semibold">Unit 3: Advanced (Link 2)</h2></div>
-                    <div class="p-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <label class="checkbox-wrap flex items-center space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
-                            <input type="checkbox" name="Kirchhoff's loop rule" class="h-5 w-5 text-indigo-600 rounded">
-                            <span>Kirchhoff's loop rule</span>
-                        </label>
-                        <label class="checkbox-wrap flex items-center space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
-                            <input type="checkbox" name="Kirchhoff's voltage law (conceptual)" class="h-5 w-5 text-indigo-600 rounded">
-                            <span>Kirchhoff's voltage law</span>
-                        </label>
+                    <div class="bg-slate-800 px-6 py-4"><h2 class="text-white font-semibold">Link 2 (Kirchhoff's Rules)</h2></div>
+                    <div class="p-6 space-y-8">
+                        
+                        <div>
+                            <h4 class="text-sm font-bold text-indigo-600 uppercase mb-3 border-b pb-1 tracking-wide">Concepts & Laws</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" name="Kirchhoff's loop rule" class="h-5 w-5 text-indigo-600 rounded mt-0.5">
+                                    <span class="text-sm">Kirchhoff's loop rule</span>
+                                </label>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" name="Kirchhoff's law application: 2-loop circuit solving" class="h-5 w-5 text-indigo-600 rounded mt-0.5">
+                                    <span class="text-sm">Kirchhoff's law application: 2-loop circuit solving</span>
+                                </label>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" name="Kirchhoff's voltage law (conceptual)" class="h-5 w-5 text-indigo-600 rounded mt-0.5">
+                                    <span class="text-sm">Kirchhoff's voltage law (conceptual)</span>
+                                </label>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" name="Kirchhoff's laws" class="h-5 w-5 text-indigo-600 rounded mt-0.5">
+                                    <span class="text-sm">Kirchhoff's laws</span>
+                                </label>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border rounded-lg hover:bg-slate-50 cursor-pointer">
+                                    <input type="checkbox" name="Kirchhoff's loop rule review" class="h-5 w-5 text-indigo-600 rounded mt-0.5">
+                                    <span class="text-sm">Kirchhoff's loop rule review</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-sm font-bold text-teal-600 uppercase mb-3 border-b pb-1 tracking-wide">Practice & Proficient</h4>
+                            <div class="grid grid-cols-1 gap-3">
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border border-teal-100 bg-teal-50/30 rounded-lg hover:bg-teal-50 cursor-pointer">
+                                    <input type="checkbox" name="Practice: Kirchhoff's loop rule Symbolic problems" class="h-5 w-5 text-teal-600 rounded mt-0.5">
+                                    <span class="text-sm font-medium text-slate-600">Practice: Kirchhoff's loop rule: Symbolic problems</span>
+                                </label>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border border-purple-100 bg-purple-50/30 rounded-lg hover:bg-purple-50 cursor-pointer">
+                                    <input type="checkbox" name="Proficient: Kirchhoff's loop rule calculations" class="h-5 w-5 text-purple-600 rounded mt-0.5">
+                                    <span class="text-sm font-bold text-purple-700">Proficient: Kirchhoff's loop rule calculations</span>
+                                </label>
+                                <label class="checkbox-wrap flex items-start space-x-3 p-3 border border-purple-100 bg-purple-50/30 rounded-lg hover:bg-purple-50 cursor-pointer">
+                                    <input type="checkbox" name="Proficient: Kirchhoff's rules circuits with two loops" class="h-5 w-5 text-purple-600 rounded mt-0.5">
+                                    <span class="text-sm font-bold text-purple-700">Proficient: Kirchhoff's rules: circuits with two loops</span>
+                                </label>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
-                <button type="submit" id="submitBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg transition flex justify-center items-center gap-3">
-                    UPDATE AKTIVITAS SAYA
-                </button>
+                <div class="bg-white rounded-2xl shadow-md overflow-hidden">
+                    <div class="bg-slate-800 px-6 py-4"><h2 class="text-white font-semibold">Link 3 (Electric Power)</h2></div>
+                    <div class="p-6">
+                        <h4 class="text-sm font-bold text-teal-600 uppercase mb-3 border-b pb-1 tracking-wide">Practice</h4>
+                        <div class="grid grid-cols-1 gap-3">
+                            <label class="checkbox-wrap flex items-start space-x-3 p-3 border border-teal-100 bg-teal-50/30 rounded-lg hover:bg-teal-50 cursor-pointer">
+                                <input type="checkbox" name="Practice: Electric Power" class="h-5 w-5 text-teal-600 rounded mt-0.5">
+                                <span class="text-sm">Electric Power</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 pb-10">
+                    <button type="submit" id="submitBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-6 rounded-xl shadow-lg transform transition hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 flex justify-center items-center gap-3">
+                        <span>UPDATE AKTIVITAS SAYA</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                        </svg>
+                    </button>
+                </div>
+
             </div>
         </form>
         
@@ -120,7 +245,7 @@
 <script>
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw-CDJKIMMG679euES7wvVRQSDghJC2X-UhkjXtRhkRPZZHyl-7fK7wUWhL5mM1Xxz0/exec';
 
-    // 1. Load Nama
+    // 1. Load Nama saat Web dibuka
     document.addEventListener('DOMContentLoaded', function() {
         fetch(SCRIPT_URL + '?action=getNames')
         .then(response => response.json())
@@ -138,7 +263,7 @@
         .catch(err => console.error("Gagal ambil nama", err));
     });
 
-    // 2. Cek Data (Hanya trigger by Nama)
+    // 2. Cek Data (Trigger by Input Nama)
     function checkUserData() {
         const nama = document.getElementById('nama').value.trim();
         const materiContainer = document.getElementById('materiContainer');
@@ -156,7 +281,7 @@
         // Reset Checkbox
         document.querySelectorAll('input[type="checkbox"]').forEach(box => box.checked = false);
 
-        // Fetch
+        // Fetch ke Apps Script
         const url = `${SCRIPT_URL}?action=getStudentData&nama=${encodeURIComponent(nama)}`;
 
         fetch(url)
@@ -164,8 +289,6 @@
         .then(data => {
             // Hilangkan Loading
             document.getElementById('loadingIdentity').classList.add('hidden');
-            
-            // Aktifkan container materi
             materiContainer.classList.remove('opacity-50', 'pointer-events-none');
 
             if (data.found) {
@@ -177,8 +300,13 @@
                     const checkbox = document.querySelector(`input[name="${key}"]`);
                     if (checkbox) checkbox.checked = true;
                 }
+                
+                // Toast notif kecil di pojok
+                const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true });
+                Toast.fire({ icon: 'success', title: 'Data berhasil dimuat' });
+
             } else {
-                document.getElementById('nameStatus').innerHTML = "👋 Hai <b>" + nama + "</b>! Sepertinya kamu baru mulai mengisi.";
+                document.getElementById('nameStatus').innerHTML = "👋 Hai <b>" + nama + "</b>! Silakan mulai mengisi ceklist.";
                 document.getElementById('nameStatus').className = "text-center text-sm text-blue-500 mt-2";
             }
         })
@@ -188,7 +316,7 @@
         });
     }
 
-    // 3. Submit
+    // 3. Submit Data
     document.getElementById('trackerForm').addEventListener('submit', function(e) {
         e.preventDefault();
         
@@ -200,8 +328,9 @@
             return;
         }
 
+        const originalText = btn.innerHTML;
         btn.disabled = true;
-        btn.innerHTML = `Sedang Menyimpan...`;
+        btn.innerHTML = `<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Menyimpan...`;
 
         let checklistData = {};
         document.querySelectorAll('input[type="checkbox"]').forEach((box) => {
@@ -221,11 +350,12 @@
                 icon: 'success',
                 confirmButtonColor: '#4f46e5'
             });
-            btn.innerHTML = "UPDATE AKTIVITAS SAYA";
+            btn.innerHTML = originalText;
             btn.disabled = false;
         })
         .catch(() => {
             Swal.fire('Gagal', 'Cek koneksi internetmu.', 'error');
+            btn.innerHTML = originalText;
             btn.disabled = false;
         });
     });
