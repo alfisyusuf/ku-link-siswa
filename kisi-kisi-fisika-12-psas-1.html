@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kisi-Kisi PSAS 1 Fisika - Kelas XII SMA ABBS Surakarta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .topic-card {
+            transition: all 0.3s ease;
+        }
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .practice-btn {
+            background: linear-gradient(90deg, #4F46E5 0%, #7C3AED 100%);
+            transition: all 0.3s ease;
+        }
+        .practice-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3), 0 4px 6px -2px rgba(79, 70, 229, 0.1);
+        }
+        .glow {
+            box-shadow: 0 0 15px rgba(79, 70, 229, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-50 to-purple-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <div class="flex items-center justify-center mb-4">
+                <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center mr-3">
+                    <i class="fas fa-bolt text-white text-xl"></i>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                    Kisi-Kisi PSAS 1 Fisika
+                </h1>
+            </div>
+            <p class="text-lg text-gray-600 mb-2">Kelas XII SMA ABBS Surakarta</p>
+            <p class="text-lg text-gray-600">Tahun Ajaran 2025/2026</p>
+            
+            <!-- Progress Bar -->
+            <div class="mt-8 bg-white rounded-full h-4 max-w-md mx-auto shadow-inner overflow-hidden">
+                <div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-full rounded-full w-3/4"></div>
+            </div>
+            <p class="text-sm text-gray-500 mt-2">Progress Belajar: 75%</p>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Hukum Ohm Section -->
+            <section class="mb-10">
+                <div class="flex items-center mb-6">
+                    <div class="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center mr-3">
+                        <span class="text-white font-bold">1</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">Hukum Ohm</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="topic-card bg-white rounded-2xl p-6 shadow-lg border border-indigo-100">
+                        <div class="flex items-start mb-4">
+                            <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-calculator text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800">Menghitung Resistansi, Tegangan, dan Arus</h3>
+                                <p class="text-gray-600 text-sm mt-1">Menggunakan Hukum Ohm</p>
+                            </div>
+                        </div>
+                        <a href="https://www.khanacademy.org/science/ap-physics-2/x0e2f5a2c:electric-circuits/x0e2f5a2c:current-resistivity-ohms-law/e/voltage-and-ohm-s-law-ap1" 
+                           target="_blank" 
+                           class="practice-btn inline-block text-white font-medium py-2 px-4 rounded-lg mt-2">
+                            <i class="fas fa-external-link-alt mr-2"></i>Practice Soal
+                        </a>
+                    </div>
+                    
+                    <div class="topic-card bg-white rounded-2xl p-6 shadow-lg border border-indigo-100">
+                        <div class="flex items-start mb-4">
+                            <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-bolt text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800">Perhitungan Hukum Ohm</h3>
+                                <p class="text-gray-600 text-sm mt-1">Latihan soal numerik</p>
+                            </div>
+                        </div>
+                        <a href="https://www.khanacademy.org/science/ap-physics-2/x0e2f5a2c:electric-circuits/x0e2f5a2c:current-resistivity-ohms-law/e/simple-circuits-numerical-ap1" 
+                           target="_blank" 
+                           class="practice-btn inline-block text-white font-medium py-2 px-4 rounded-lg mt-2">
+                            <i class="fas fa-external-link-alt mr-2"></i>Practice Soal
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resistansi Ekivalen Section -->
+            <section class="mb-10">
+                <div class="flex items-center mb-6">
+                    <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center mr-3">
+                        <span class="text-white font-bold">2</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">Resistansi Ekivalen</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="topic-card bg-white rounded-2xl p-6 shadow-lg border border-purple-100">
+                        <div class="flex items-start mb-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-project-diagram text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800">Mencari Resistansi Ekivalen</h3>
+                                <p class="text-gray-600 text-sm mt-1">Rangkaian seri dan paralel</p>
+                            </div>
+                        </div>
+                        <a href="https://www.khanacademy.org/science/ap-physics-2/x0e2f5a2c:electric-circuits/x0e2f5a2c:compound-circuits/e/finding-equivalent-resistance" 
+                           target="_blank" 
+                           class="practice-btn inline-block text-white font-medium py-2 px-4 rounded-lg mt-2">
+                            <i class="fas fa-external-link-alt mr-2"></i>Practice Soal
+                        </a>
+                    </div>
+                    
+                    <div class="topic-card bg-white rounded-2xl p-6 shadow-lg border border-purple-100">
+                        <div class="flex items-start mb-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-network-wired text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800">Menyederhanakan Jaringan Resistor</h3>
+                                <p class="text-gray-600 text-sm mt-1">Rangkaian kompleks</p>
+                            </div>
+                        </div>
+                        <a href="https://www.khanacademy.org/science/ap-physics-2/x0e2f5a2c:electric-circuits/x0e2f5a2c:compound-circuits/e/simplifying-resistor-networks" 
+                           target="_blank" 
+                           class="practice-btn inline-block text-white font-medium py-2 px-4 rounded-lg mt-2">
+                            <i class="fas fa-external-link-alt mr-2"></i>Practice Soal
+                        </a>
+                    </div>
+                    
+                    <div class="topic-card bg-white rounded-2xl p-6 shadow-lg border border-purple-100">
+                        <div class="flex items-start mb-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-search text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800">Mencari Arus dan Tegangan</h3>
+                                <p class="text-gray-600 text-sm mt-1">Rangkaian murni</p>
+                            </div>
+                        </div>
+                        <a href="https://www.khanacademy.org/science/ap-physics-2/x0e2f5a2c:electric-circuits/x0e2f5a2c:compound-circuits/e/finding-currents-and-voltages--pure-circuits-" 
+                           target="_blank" 
+                           class="practice-btn inline-block text-white font-medium py-2 px-4 rounded-lg mt-2">
+                            <i class="fas fa-external-link-alt mr-2"></i>Practice Soal
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hukum Kirchhoff Section -->
+            <section class="mb-10">
+                <div class="flex items-center mb-6">
+                    <div class="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center mr-3">
+                        <span class="text-white font-bold">3</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">Hukum Kirchhoff</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="topic-card bg-white rounded-2xl p-6 shadow-lg border border-pink-100">
+                        <div class="flex items-start mb-4">
+                            <div class="w-10 h-10 bg-pink-100 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-code-branch text-pink-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800">Aturan Simpul Kirchhoff</h3>
+                                <p class="text-gray-600 text-sm mt-1">Konservasi muatan</p>
+                            </div>
+                        </div>
+                        <a href="https://www.khanacademy.org/science/in-in-class-12th-physics-india/in-in-current-electricity/in-in-kirchhoffs-junction-rule/e/kirchoff-s-junction-rule-ap-quiz" 
+                           target="_blank" 
+                           class="practice-btn inline-block text-white font-medium py-2 px-4 rounded-lg mt-2">
+                            <i class="fas fa-external-link-alt mr-2"></i>Practice Soal
+                        </a>
+                    </div>
+                    
+                    <div class="topic-card bg-white rounded-2xl p-6 shadow-lg border border-pink-100">
+                        <div class="flex items-start mb-4">
+                            <div class="w-10 h-10 bg-pink-100 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-sync text-pink-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800">Aturan Loop Kirchhoff: Soal Simbolik</h3>
+                                <p class="text-gray-600 text-sm mt-1">Tingkat mahir</p>
+                            </div>
+                        </div>
+                        <a href="https://www.khanacademy.org/science/in-in-class-12th-physics-india/in-in-current-electricity/in-in-kirchhoffs-loop-rule/e/kirchhoff-s-loop-rule-symbolic-exercises" 
+                           target="_blank" 
+                           class="practice-btn inline-block text-white font-medium py-2 px-4 rounded-lg mt-2">
+                            <i class="fas fa-external-link-alt mr-2"></i>Practice Soal
+                        </a>
+                    </div>
+                    
+                    <div class="topic-card bg-white rounded-2xl p-6 shadow-lg border border-pink-100">
+                        <div class="flex items-start mb-4">
+                            <div class="w-10 h-10 bg-pink-100 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-calculator text-pink-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800">Perhitungan Aturan Loop Kirchhoff</h3>
+                                <p class="text-gray-600 text-sm mt-1">Tingkat mahir</p>
+                            </div>
+                        </div>
+                        <a href="https://www.khanacademy.org/science/in-in-class-12th-physics-india/in-in-current-electricity/in-in-kirchhoffs-loop-rule/e/kirchhoff-s-loop-rule-numerical-exercises" 
+                           target="_blank" 
+                           class="practice-btn inline-block text-white font-medium py-2 px-4 rounded-lg mt-2">
+                            <i class="fas fa-external-link-alt mr-2"></i>Practice Soal
+                        </a>
+                    </div>
+                    
+                    <div class="topic-card bg-white rounded-2xl p-6 shadow-lg border border-pink-100">
+                        <div class="flex items-start mb-4">
+                            <div class="w-10 h-10 bg-pink-100 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-infinity text-pink-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800">Aturan Kirchhoff: Rangkaian Dua Loop</h3>
+                                <p class="text-gray-600 text-sm mt-1">Sistem persamaan</p>
+                            </div>
+                        </div>
+                        <a href="https://www.khanacademy.org/science/in-in-class-12th-physics-india/in-in-current-electricity/in-in-kirchhoffs-loop-rule/e/kirchhoff-s-rules-circuits-with-two-loops" 
+                           target="_blank" 
+                           class="practice-btn inline-block text-white font-medium py-2 px-4 rounded-lg mt-2">
+                            <i class="fas fa-external-link-alt mr-2"></i>Practice Soal
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Daya Listrik Section -->
+            <section class="mb-10">
+                <div class="flex items-center mb-6">
+                    <div class="w-8 h-8 bg-teal-500 rounded-full flex items-center justify-center mr-3">
+                        <span class="text-white font-bold">4</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800">Daya Listrik</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 gap-6">
+                    <div class="topic-card bg-white rounded-2xl p-6 shadow-lg border border-teal-100">
+                        <div class="flex items-start mb-4">
+                            <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center mr-3">
+                                <i class="fas fa-plug text-teal-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg text-gray-800">Daya Listrik</h3>
+                                <p class="text-gray-600 text-sm mt-1">Perhitungan daya dan energi</p>
+                            </div>
+                        </div>
+                        <a href="https://en.khanacademy.org/science/karnataka-bridge-course-class-12th-physics/x314b60cd774aae75:electricity/x314b60cd774aae75:power-and-domestic-circuits/e/electric-power-in" 
+                           target="_blank" 
+                           class="practice-btn inline-block text-white font-medium py-2 px-4 rounded-lg mt-2">
+                            <i class="fas fa-external-link-alt mr-2"></i>Practice Soal
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="text-center mt-12 pt-8 border-t border-gray-200">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="text-gray-500 hover:text-indigo-600 transition-colors">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-500 hover:text-indigo-600 transition-colors">
+                    <i class="fab fa-tiktok text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-500 hover:text-indigo-600 transition-colors">
+                    <i class="fab fa-discord text-xl"></i>
+                </a>
+            </div>
+            <p class="text-gray-500 text-sm">SMA ABBS Surakarta • Tahun Ajaran 2025/2026</p>
+            <p class="text-gray-400 text-xs mt-2">Tetap semangat belajar! 💪⚡</p>
+        </footer>
+    </div>
+
+    <script>
+        // Menambahkan efek interaktif untuk kartu topik
+        document.addEventListener('DOMContentLoaded', function() {
+            const topicCards = document.querySelectorAll('.topic-card');
+            
+            topicCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.classList.add('glow');
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.classList.remove('glow');
+                });
+            });
+            
+            // Animasi untuk tombol practice
+            const practiceButtons = document.querySelectorAll('.practice-btn');
+            
+            practiceButtons.forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    this.style.background = 'linear-gradient(90deg, #7C3AED 0%, #4F46E5 100%)';
+                });
+                
+                button.addEventListener('mouseleave', function() {
+                    this.style.background = 'linear-gradient(90deg, #4F46E5 0%, #7C3AED 100%)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
