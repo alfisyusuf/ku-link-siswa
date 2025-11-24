@@ -13,6 +13,7 @@
         }
         .topic-card {
             transition: all 0.3s ease;
+            break-inside: avoid; /* Mencegah kartu terpotong saat print */
         }
         .topic-card:hover {
             transform: translateY(-5px);
@@ -29,9 +30,43 @@
         .glow {
             box-shadow: 0 0 15px rgba(79, 70, 229, 0.3);
         }
+
+        /* --- STYLES KHUSUS PRINT/PDF --- */
+        @media print {
+            /* Sembunyikan tombol download saat diprint */
+            .no-print {
+                display: none !important;
+            }
+            /* Paksa browser mencetak background color/gradient */
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            /* Atur margin halaman PDF */
+            @page {
+                margin: 0.5cm;
+                size: A4;
+            }
+            /* Pastikan link terlihat jelas */
+            a {
+                text-decoration: underline;
+                color: #4F46E5 !important;
+            }
+            /* Hapus shadow agar lebih bersih di PDF */
+            .topic-card, .practice-btn {
+                box-shadow: none !important;
+                border: 1px solid #ddd;
+            }
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-indigo-50 to-purple-100 min-h-screen">
+    
+    <button onclick="window.print()" class="no-print fixed bottom-8 right-8 z-50 bg-red-600 hover:bg-red-700 text-white font-bold py-4 px-6 rounded-full shadow-2xl transition-all duration-300 flex items-center gap-2 animate-bounce">
+        <i class="fas fa-file-pdf text-xl"></i>
+        <span>Download PDF</span>
+    </button>
+
     <div class="container mx-auto px-4 py-8 max-w-4xl">
         <header class="text-center mb-12">
             <div class="flex items-center justify-center mb-4">
@@ -44,11 +79,10 @@
             </div>
             <p class="text-lg text-gray-600 mb-2">Class XII SMA ABBS Surakarta</p>
             <p class="text-lg text-gray-600">Academic Year 2025/2026</p>
-            
-            </header>
+        </header>
 
         <main>
-            <section class="mb-10">
+            <section class="mb-10 break-inside-avoid">
                 <div class="flex items-center mb-6">
                     <div class="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center mr-3">
                         <span class="text-white font-bold">1</span>
@@ -93,7 +127,7 @@
                 </div>
             </section>
 
-            <section class="mb-10">
+            <section class="mb-10 break-inside-avoid">
                 <div class="flex items-center mb-6">
                     <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center mr-3">
                         <span class="text-white font-bold">2</span>
@@ -155,7 +189,7 @@
                 </div>
             </section>
 
-            <section class="mb-10">
+            <section class="mb-10 break-inside-avoid">
                 <div class="flex items-center mb-6">
                     <div class="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center mr-3">
                         <span class="text-white font-bold">3</span>
@@ -187,7 +221,7 @@
                                 <i class="fas fa-sync text-pink-600"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-lg text-gray-800">Kirchhoff's Loop Rule: Symbolic Problems</h3>
+                                <h3 class="font-bold text-lg text-gray-800">Loop Rule: Symbolic Problems</h3>
                                 <p class="text-gray-600 text-sm mt-1">Advanced level</p>
                             </div>
                         </div>
@@ -204,7 +238,7 @@
                                 <i class="fas fa-calculator text-pink-600"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-lg text-gray-800">Kirchhoff's Loop Rule Calculations</h3>
+                                <h3 class="font-bold text-lg text-gray-800">Loop Rule Calculations</h3>
                                 <p class="text-gray-600 text-sm mt-1">Advanced level</p>
                             </div>
                         </div>
@@ -221,7 +255,7 @@
                                 <i class="fas fa-infinity text-pink-600"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-lg text-gray-800">Kirchhoff's Rules: Two-Loop Circuits</h3>
+                                <h3 class="font-bold text-lg text-gray-800">Two-Loop Circuits</h3>
                                 <p class="text-gray-600 text-sm mt-1">Systems of equations</p>
                             </div>
                         </div>
@@ -234,7 +268,7 @@
                 </div>
             </section>
 
-            <section class="mb-10">
+            <section class="mb-10 break-inside-avoid">
                 <div class="flex items-center mb-6">
                     <div class="w-8 h-8 bg-teal-500 rounded-full flex items-center justify-center mr-3">
                         <span class="text-white font-bold">4</span>
@@ -263,7 +297,7 @@
             </section>
         </main>
 
-        <footer class="text-center mt-12 pt-8 border-t border-gray-200">
+        <footer class="text-center mt-12 pt-8 border-t border-gray-200 break-inside-avoid">
             <div class="flex justify-center space-x-6 mb-4">
                 <a href="#" class="text-gray-500 hover:text-indigo-600 transition-colors">
                     <i class="fab fa-instagram text-xl"></i>
@@ -281,28 +315,21 @@
     </div>
 
     <script>
-        // Adding interactive effects for topic cards
         document.addEventListener('DOMContentLoaded', function() {
             const topicCards = document.querySelectorAll('.topic-card');
-            
             topicCards.forEach(card => {
                 card.addEventListener('mouseenter', function() {
                     this.classList.add('glow');
                 });
-                
                 card.addEventListener('mouseleave', function() {
                     this.classList.remove('glow');
                 });
             });
-            
-            // Animation for practice buttons
             const practiceButtons = document.querySelectorAll('.practice-btn');
-            
             practiceButtons.forEach(button => {
                 button.addEventListener('mouseenter', function() {
                     this.style.background = 'linear-gradient(90deg, #7C3AED 0%, #4F46E5 100%)';
                 });
-                
                 button.addEventListener('mouseleave', function() {
                     this.style.background = 'linear-gradient(90deg, #4F46E5 0%, #7C3AED 100%)';
                 });
