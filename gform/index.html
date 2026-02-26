@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link Ujian SMA - Candy Pop!</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'candy': ['Fredoka', 'sans-serif'],
+                    },
+                    colors: {
+                        'candy-pink': '#ffb3c6',
+                        'candy-blue': '#a9def9',
+                        'candy-yellow': '#fcf6bd',
+                        'candy-purple': '#e4c1f9',
+                        'candy-mint': '#d0f4de'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+            /* Latar belakang gradasi pastel */
+            background: linear-gradient(135deg, #ffb3c6, #e4c1f9, #a9def9);
+            background-attachment: fixed;
+        }
+        
+        /* Efek tombol 3D ala permen */
+        .btn-candy {
+            box-shadow: 0 6px 0 rgba(0, 0, 0, 0.1);
+            transition: transform 0.1s ease, box-shadow 0.1s ease;
+        }
+        .btn-candy:active {
+            box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+            transform: translateY(6px);
+        }
+
+        /* Styling untuk elemen animasi garis di background */
+        .line-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden z-0">
+
+    <svg class="line-bg" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path id="wavy-line-1" d="M0,30 Q25,10 50,30 T100,30" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"></path>
+        <path id="wavy-line-2" d="M0,80 Q25,100 50,80 T100,80" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="4"></path>
+    </svg>
+
+    <div class="relative z-10 w-full max-w-md bg-white/50 backdrop-blur-md rounded-[2rem] p-8 shadow-2xl border-4 border-white">
+        
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-pink-500 tracking-wide drop-shadow-sm mb-2 title-anim">
+                🍬 Ujian SMA 🍭
+            </h1>
+            <p class="text-gray-700 font-medium subtitle-anim">Pilih mapel ujianmu hari ini!</p>
+        </div>
+
+        <div id="link-container" class="space-y-4">
+            </div>
+        
+    </div>
+
+    <script>
+        // 1. DATA JSON: Daftar Link Mapel
+        // Kamu bisa dengan mudah menambah atau mengedit link di sini
+        const dataMapelJSON = `[
+            { "id": 1, "nama": "Matematika", "url": "#mtk", "warna": "bg-candy-pink", "icon": "📐" },
+            { "id": 2, "nama": "Bahasa Indonesia", "url": "#bindo", "warna": "bg-candy-blue", "icon": "📚" },
+            { "id": 3, "nama": "Bahasa Inggris", "url": "#bing", "warna": "bg-candy-yellow", "icon": "🌍" },
+            { "id": 4, "nama": "Biologi", "url": "#bio", "warna": "bg-candy-mint", "icon": "🧬" },
+            { "id": 5, "nama": "Fisika", "url": "#fisika", "warna": "bg-candy-purple", "icon": "⚡" },
+            { "id": 6, "nama": "Kimia", "url": "#kimia", "warna": "bg-pink-300", "icon": "🧪" }
+        ]`;
+
+        // Parse JSON ke dalam Object JavaScript
+        const mapelList = JSON.parse(dataMapelJSON);
+
+        // 2. RENDER DATA KE HTML (Responsive)
+        const container = document.getElementById('link-container');
+        
+        mapelList.forEach((mapel) => {
+            const linkEl = document.createElement('a');
+            linkEl.href = mapel.url;
+            // Kelas Tailwind untuk styling responsif & Candy Pop
+            linkEl.className = `${mapel.warna} btn-candy mapel-item block w-full py-4 px-6 rounded-2xl text-gray-800 font-bold text-lg text-center border-4 border-white hover:opacity-90`;
+            linkEl.innerHTML = `<span class="mr-2 text-2xl align-middle">${mapel.icon}</span> ${mapel.nama}`;
+            container.appendChild(linkEl);
+        });
+
+        // 3. ANIMASI DENGAN ANIME.JS
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // Animasi Judul Turun dari Atas
+            anime({
+                targets: '.title-anim, .subtitle-anim',
+                translateY: [-30, 0],
+                opacity: [0, 1],
+                duration: 1200,
+                delay: anime.stagger(200),
+                easing: 'easeOutElastic(1, .6)'
+            });
+
+            // Animasi Tombol Muncul Bergantian (Staggering)
+            anime({
+                targets: '.mapel-item',
+                scale: [0.8, 1],
+                opacity: [0, 1],
+                duration: 1000,
+                delay: anime.stagger(100, {start: 600}), // Delay beruntun tiap elemen
+                easing: 'easeOutElastic(1, .5)'
+            });
+
+            // Animasi Garis Latar Belakang (SVG Line Animation)
+            anime({
+                targets: '.line-bg path',
+                strokeDashoffset: [anime.setDashoffset, 0],
+                easing: 'easeInOutSine',
+                duration: 4000,
+                delay: function(el, i) { return i * 300 },
+                direction: 'alternate',
+                loop: true
+            });
+            
+        });
+    </script>
+</body>
+</html>
