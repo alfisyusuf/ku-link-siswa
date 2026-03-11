@@ -4,7 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jadwal PSAJ XII - SMA ABBS Surakarta</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maroon: {
+                            100: '#f5e6e6',
+                            300: '#d89999',
+                            600: '#990000',
+                            700: '#800000', // Maroon khas ABBS
+                            800: '#660000',
+                            900: '#4D0000', // Dark Maroon
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -22,8 +43,8 @@
 
     <div class="max-w-md mx-auto min-h-screen bg-slate-50 shadow-2xl relative overflow-hidden pb-10">
         
-        <div class="absolute top-0 left-0 w-full h-64 bg-gradient-to-br from-maroon-800 to-red-900 rounded-b-[40px] z-0">
-            <div class="absolute inset-0 bg-gradient-to-br from-maroon-800 via-red-900 to-blue-900 opacity-20"></div>
+        <div class="absolute top-0 left-0 w-full h-64 bg-gradient-to-br from-maroon-800 to-maroon-900 rounded-b-[40px] z-0">
+            <div class="absolute inset-0 bg-gradient-to-br from-maroon-800 via-maroon-900 to-blue-900 opacity-30"></div>
         </div>
         
         <header class="relative z-10 pt-10 px-6 pb-4 text-white">
@@ -34,7 +55,7 @@
                 </div>
                 <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
                     <i id="school-logo" class="fa-solid fa-graduation-cap text-xl text-blue-100"></i>
-                    </div>
+                </div>
             </div>
         </header>
 
@@ -75,12 +96,6 @@
             { hari: "Sabtu", tanggal: "11 April 2026", waktu: "07.30 - 09.30", sesi: 1, mapel: "Susulan", kelas: ["TCP", "ICT", "CCP"], info: "Bila ada" }
         ];
 
-        // Konfigurasi Warna berdasarkan Khas ABBS
-        const maroonPrimary = "#800000";
-        const darkMaroon = "#4D0000";
-        const accentBlue = "#1E40AF"; // Biru yang serasi dengan maroon
-
-        // Fungsi konversi string tanggal ke Date object untuk komparasi logika
         function parseTanggalStr(tglStr) {
             const parts = tglStr.split(' ');
             const day = parseInt(parts[0]);
@@ -90,12 +105,9 @@
             return new Date(year, month, day);
         }
 
-        // --- CORE LOGIC SPOTLIGHT ---
         const now = new Date();
         const currentHour = now.getHours();
         
-        // Buat tanggal batas (cutoff). 
-        // Jika jam >= 13, jadikan target pencarian ke besok hari (H+1)
         let cutoffDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
         let isTommorrowHighlight = false;
         if (currentHour >= 13) {
@@ -103,7 +115,6 @@
             isTommorrowHighlight = true;
         }
 
-        // Kelompokkan data berdasarkan tanggal
         const groupedData = {};
         jadwalData.forEach(item => {
             if (!groupedData[item.tanggal]) groupedData[item.tanggal] = [];
@@ -112,7 +123,6 @@
 
         const sortedDates = Object.keys(groupedData).sort((a, b) => parseTanggalStr(a) - parseTanggalStr(b));
         
-        // Cari tanggal terdekat untuk Spotlight
         let spotlightDate = null;
         for (let d of sortedDates) {
             if (parseTanggalStr(d) >= cutoffDate) {
@@ -121,7 +131,6 @@
             }
         }
 
-        // Helper untuk merender badge kelas (TCP/ICT/CCP)
         function renderClassBadges(kelasArr) {
             const colors = {
                 "TCP": "bg-emerald-100 text-emerald-700",
@@ -131,7 +140,6 @@
             return kelasArr.map(k => `<span class="text-[10px] font-bold px-2 py-0.5 rounded-md ${colors[k]}">${k}</span>`).join('');
         }
 
-        // Render Spotlight
         const spotlightContainer = document.getElementById('spotlight-container');
         if (spotlightDate) {
             const jadwalSpotlight = groupedData[spotlightDate];
@@ -141,7 +149,7 @@
             let spotlightHTML = `
                 <div class="glass-card rounded-2xl p-5 shadow-lg border border-white/50 relative overflow-hidden">
                     <div class="absolute top-0 right-0 w-24 h-24 bg-yellow-300 rounded-full mix-blend-multiply filter blur-2xl opacity-30 translate-x-10 -translate-y-10"></div>
-                    <div class="absolute bottom-0 left-0 w-16 h-16 bg-blue-500 rounded-full mix-blend-multiply filter blur-2xl opacity-20 -translate-x-5 translate-y-5"></div>
+                    <div class="absolute bottom-0 left-0 w-16 h-16 bg-blue-400 rounded-full mix-blend-multiply filter blur-2xl opacity-20 -translate-x-5 translate-y-5"></div>
                     
                     <div class="flex justify-between items-end mb-4 relative z-10">
                         <div>
@@ -178,7 +186,6 @@
             `;
         }
 
-        // Render All Schedules
         const scheduleList = document.getElementById('schedule-list');
         sortedDates.forEach(date => {
             const daySchedules = groupedData[date];
