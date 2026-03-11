@@ -579,11 +579,38 @@ const grouped = {};
 jadwalData.forEach(x => { (grouped[x.tanggal] = grouped[x.tanggal]||[]).push(x); });
 const dates = Object.keys(grouped).sort((a,b) => parseDate(a)-parseDate(b));
 
+// LOGIKA PENENTUAN HARI YANG DIPERBARUI
 const now = new Date();
-let cutoff = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-let isTmr = false;
-if (now.getHours() >= 13) { cutoff.setDate(cutoff.getDate()+1); isTmr = true; }
+const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+let cutoff = new Date(today.getTime());
+// Jika lewat jam 13.00, geser fokus ke jadwal di hari berikutnya
+if (now.getHours() >= 13) { 
+    cutoff.setDate(cutoff.getDate() + 1); 
+}
+
 let spotDate = dates.find(d => parseDate(d) >= cutoff) || null;
+
+// Menentukan label dinamis berdasarkan jarak hari
+let spotLabel = "";
+let tagLabel = "";
+
+if (spotDate) {
+    const targetDate = parseDate(spotDate);
+    const diffTime = targetDate.getTime() - today.getTime();
+    const diffDays = Math.round(diffTime / (1000 * 3600 * 24)); // Menghitung selisih hari
+
+    if (diffDays === 0) {
+        spotLabel = "🎯 Jadwal Hari Ini";
+        tagLabel = "Hari Ini";
+    } else if (diffDays === 1) {
+        spotLabel = "⚡ Fokus Besok!";
+        tagLabel = "Besok";
+    } else {
+        spotLabel = "🚀 Jadwal Terdekat";
+        tagLabel = "Mendatang";
+    }
+}
 
 const totalSoal = jadwalData.filter(x=>x.info.includes('Soal'))
     .reduce((s,x)=>s+(+x.info.match(/\d+/)?.[0]||0), 0);
@@ -599,7 +626,7 @@ if (spotDate) {
     sc.innerHTML = `
     <div class="spotlight">
         <div class="spot-glow"></div>
-        <div class="spot-label">${isTmr ? '⚡ Fokus Besok!' : '🎯 Jadwal Hari Ini'}</div>
+        <div class="spot-label">${spotLabel}</div>
         <div class="spot-date">${items[0].hari}, ${spotDate}</div>
         ${items.map(it => `
         <div class="spot-item">
@@ -631,7 +658,7 @@ dates.forEach(date => {
                 <div class="day-nm">${items[0].hari}</div>
                 <div class="day-dt">${date}</div>
             </div>
-            ${isActive ? `<span class="active-tag">${isTmr?'Besok':'Hari Ini'}</span>` : ''}
+            ${isActive ? `<span class="active-tag">${tagLabel}</span>` : ''}
         </div>
         <div class="day-body">
             ${items.map(it => `
@@ -650,5 +677,6 @@ dates.forEach(date => {
     </div>`;
 });
 </script>
+
 </body>
 </html>
