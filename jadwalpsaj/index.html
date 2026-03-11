@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal PSAJ XII - SMA ABBS Surakarta</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        /* Sembunyikan scrollbar untuk tampilan lebih bersih */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased selection:bg-indigo-200">
+
+    <div class="max-w-md mx-auto min-h-screen bg-slate-50 shadow-2xl relative overflow-hidden pb-10">
+        
+        <div class="absolute top-0 left-0 w-full h-64 bg-gradient-to-br from-indigo-600 to-blue-500 rounded-b-[40px] z-0"></div>
+        
+        <header class="relative z-10 pt-10 px-6 pb-4 text-white">
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    <h1 class="text-2xl font-bold tracking-tight">PSAJ 2026</h1>
+                    <p class="text-indigo-100 text-sm font-medium">SMA ABBS Surakarta • Kelas XII</p>
+                </div>
+                <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <i class="fa-solid fa-graduation-cap text-xl"></i>
+                </div>
+            </div>
+        </header>
+
+        <main class="relative z-10 px-6 mt-2">
+            <div id="spotlight-container" class="mb-8">
+                </div>
+
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-bold text-slate-800">Semua Jadwal</h2>
+                <span class="text-xs font-semibold bg-slate-200 text-slate-600 px-2 py-1 rounded-md">1-11 April</span>
+            </div>
+
+            <div id="schedule-list" class="space-y-4">
+                </div>
+        </main>
+        
+    </div>
+
+    <script>
+        // Data Jadwal JSON
+        const jadwalData = [
+            { hari: "Rabu", tanggal: "1 April 2026", waktu: "07.30 - 09.30", sesi: 1, mapel: "Bahasa Indonesia", kelas: ["TCP", "ICT", "CCP"], info: "PG • 45 Soal" },
+            { hari: "Rabu", tanggal: "1 April 2026", waktu: "10.15 - 11.45", sesi: 2, mapel: "Islamic Studies", kelas: ["TCP", "ICT", "CCP"], info: "PG • 45 Soal" },
+            { hari: "Kamis", tanggal: "2 April 2026", waktu: "07.30 - 09.30", sesi: 1, mapel: "Chemistry", kelas: ["TCP", "ICT", "CCP"], info: "PG • 40 Soal" },
+            { hari: "Kamis", tanggal: "2 April 2026", waktu: "10.15 - 11.45", sesi: 2, mapel: "Physical Education", kelas: ["TCP", "ICT", "CCP"], info: "PG • 45 Soal" },
+            { hari: "Sabtu", tanggal: "4 April 2026", waktu: "07.30 - 09.30", sesi: 1, mapel: "Compulsory English", kelas: ["TCP", "ICT", "CCP"], info: "PG • 45 Soal" },
+            { hari: "Senin", tanggal: "6 April 2026", waktu: "07.30 - 09.30", sesi: 1, mapel: "Physics", kelas: ["TCP", "ICT", "CCP"], info: "PG • 40 Soal" },
+            { hari: "Senin", tanggal: "6 April 2026", waktu: "10.15 - 11.45", sesi: 2, mapel: "Pancasila Education", kelas: ["TCP", "ICT", "CCP"], info: "PG • 45 Soal" },
+            { hari: "Selasa", tanggal: "7 April 2026", waktu: "07.30 - 09.30", sesi: 1, mapel: "Informatics", kelas: ["ICT"], info: "PG • 40 Soal" },
+            { hari: "Selasa", tanggal: "7 April 2026", waktu: "07.30 - 09.30", sesi: 1, mapel: "Advanced English", kelas: ["TCP", "CCP"], info: "PG • 40 Soal" },
+            { hari: "Selasa", tanggal: "7 April 2026", waktu: "10.15 - 11.45", sesi: 2, mapel: "History", kelas: ["TCP", "ICT", "CCP"], info: "PG • 45 Soal" },
+            { hari: "Rabu", tanggal: "8 April 2026", waktu: "07.30 - 09.30", sesi: 1, mapel: "Mathematics", kelas: ["TCP", "ICT", "CCP"], info: "PG • 40 Soal" },
+            { hari: "Rabu", tanggal: "8 April 2026", waktu: "10.15 - 11.45", sesi: 2, mapel: "Biology", kelas: ["TCP", "ICT", "CCP"], info: "PG • 40 Soal" },
+            { hari: "Kamis", tanggal: "9 April 2026", waktu: "07.30 - 09.30", sesi: 1, mapel: "Advanced Mathematics", kelas: ["TCP", "ICT", "CCP"], info: "PG • 40 Soal" },
+            { hari: "Kamis", tanggal: "9 April 2026", waktu: "10.15 - 12.15", sesi: 2, mapel: "Susulan", kelas: ["TCP", "ICT", "CCP"], info: "Bila ada" },
+            { hari: "Kamis", tanggal: "9 April 2026", waktu: "13.00 - 15.00", sesi: 3, mapel: "Susulan", kelas: ["TCP", "ICT", "CCP"], info: "Bila ada" },
+            { hari: "Jumat", tanggal: "10 April 2026", waktu: "13.00 - 15.00", sesi: 1, mapel: "Susulan", kelas: ["TCP", "ICT", "CCP"], info: "Bila ada" },
+            { hari: "Sabtu", tanggal: "11 April 2026", waktu: "07.30 - 09.30", sesi: 1, mapel: "Susulan", kelas: ["TCP", "ICT", "CCP"], info: "Bila ada" }
+        ];
+
+        // Fungsi konversi string tanggal ke Date object untuk komparasi logika
+        function parseTanggalStr(tglStr) {
+            const parts = tglStr.split(' ');
+            const day = parseInt(parts[0]);
+            const months = { "Januari":0, "Februari":1, "Maret":2, "April":3, "Mei":4, "Juni":5, "Juli":6, "Agustus":7, "September":8, "Oktober":9, "November":10, "Desember":11 };
+            const month = months[parts[1]];
+            const year = parseInt(parts[2]);
+            return new Date(year, month, day);
+        }
+
+        // --- CORE LOGIC SPOTLIGHT ---
+        const now = new Date();
+        const currentHour = now.getHours();
+        
+        // Buat tanggal batas (cutoff). 
+        // Jika jam >= 13, jadikan target pencarian ke besok hari (H+1)
+        let cutoffDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        let isTommorrowHighlight = false;
+        if (currentHour >= 13) {
+            cutoffDate.setDate(cutoffDate.getDate() + 1);
+            isTommorrowHighlight = true;
+        }
+
+        // Kelompokkan data berdasarkan tanggal
+        const groupedData = {};
+        jadwalData.forEach(item => {
+            if (!groupedData[item.tanggal]) groupedData[item.tanggal] = [];
+            groupedData[item.tanggal].push(item);
+        });
+
+        const sortedDates = Object.keys(groupedData).sort((a, b) => parseTanggalStr(a) - parseTanggalStr(b));
+        
+        // Cari tanggal terdekat untuk Spotlight
+        let spotlightDate = null;
+        for (let d of sortedDates) {
+            if (parseTanggalStr(d) >= cutoffDate) {
+                spotlightDate = d;
+                break;
+            }
+        }
+
+        // Helper untuk merender badge kelas (TCP/ICT/CCP)
+        function renderClassBadges(kelasArr) {
+            const colors = {
+                "TCP": "bg-emerald-100 text-emerald-700",
+                "ICT": "bg-blue-100 text-blue-700",
+                "CCP": "bg-purple-100 text-purple-700"
+            };
+            return kelasArr.map(k => `<span class="text-[10px] font-bold px-2 py-0.5 rounded-md ${colors[k]}">${k}</span>`).join('');
+        }
+
+        // Render Spotlight
+        const spotlightContainer = document.getElementById('spotlight-container');
+        if (spotlightDate) {
+            const jadwalSpotlight = groupedData[spotlightDate];
+            const hariSpotlight = jadwalSpotlight[0].hari;
+            const spotlightTitle = isTommorrowHighlight ? "Fokus Besok!" : "Jadwal Hari Ini";
+            
+            let spotlightHTML = `
+                <div class="glass-card rounded-2xl p-5 shadow-lg border border-white/50 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-yellow-300 rounded-full mix-blend-multiply filter blur-2xl opacity-40 translate-x-10 -translate-y-10"></div>
+                    
+                    <div class="flex justify-between items-end mb-4 relative z-10">
+                        <div>
+                            <p class="text-xs font-bold text-indigo-600 uppercase tracking-wider mb-1">🎯 ${spotlightTitle}</p>
+                            <h3 class="text-xl font-extrabold text-slate-800">${hariSpotlight}, ${spotlightDate}</h3>
+                        </div>
+                    </div>
+                    <div class="space-y-3 relative z-10">
+            `;
+
+            jadwalSpotlight.forEach(item => {
+                spotlightHTML += `
+                    <div class="bg-white/60 rounded-xl p-3 border border-indigo-50">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs font-semibold text-slate-500 mb-0.5"><i class="fa-regular fa-clock mr-1"></i> Sesi ${item.sesi} • ${item.waktu}</p>
+                                <p class="font-bold text-slate-800 text-base leading-tight">${item.mapel}</p>
+                                <p class="text-xs text-slate-500 mt-1">${item.info}</p>
+                            </div>
+                            <div class="flex flex-col gap-1 items-end">
+                                ${renderClassBadges(item.kelas)}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            spotlightHTML += `</div></div>`;
+            spotlightContainer.innerHTML = spotlightHTML;
+        } else {
+            spotlightContainer.innerHTML = `
+                <div class="glass-card rounded-2xl p-5 shadow-lg text-center">
+                    <p class="text-slate-500 font-medium">Ujian telah selesai. Selamat bersantai!</p>
+                </div>
+            `;
+        }
+
+        // Render All Schedules
+        const scheduleList = document.getElementById('schedule-list');
+        sortedDates.forEach(date => {
+            const daySchedules = groupedData[date];
+            const isSpotlight = date === spotlightDate;
+            
+            let listHTML = `
+                <div class="bg-white rounded-xl shadow-sm border ${isSpotlight ? 'border-indigo-300' : 'border-slate-100'} p-4">
+                    <h4 class="font-bold text-slate-800 mb-3 border-b border-slate-50 pb-2">${daySchedules[0].hari}, ${date}</h4>
+                    <div class="space-y-4">
+            `;
+
+            daySchedules.forEach(item => {
+                listHTML += `
+                    <div class="flex gap-3">
+                        <div class="w-16 flex-shrink-0 text-right pt-0.5">
+                            <p class="text-xs font-bold text-slate-700">${item.waktu.split(' - ')[0]}</p>
+                            <p class="text-[10px] text-slate-400">Sesi ${item.sesi}</p>
+                        </div>
+                        <div class="w-px bg-slate-200 relative">
+                            <div class="absolute top-1.5 -left-1 w-2 h-2 rounded-full ${isSpotlight ? 'bg-indigo-500' : 'bg-slate-300'}"></div>
+                        </div>
+                        <div class="flex-1 pb-2">
+                            <p class="font-bold text-sm text-slate-800">${item.mapel}</p>
+                            <div class="flex flex-wrap gap-1 mt-1">
+                                ${renderClassBadges(item.kelas)}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            listHTML += `</div></div>`;
+            scheduleList.innerHTML += listHTML;
+        });
+    </script>
+</body>
+</html>
